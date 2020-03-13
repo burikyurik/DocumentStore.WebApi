@@ -15,4 +15,5 @@ namespace DocumentStore.Infrastructure.Models
             modelBuilder.HasDefaultContainer("DocumentStore");
         }
     }
+
 }

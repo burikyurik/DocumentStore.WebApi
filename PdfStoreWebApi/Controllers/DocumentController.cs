@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using DocumentStore.Application.Command;
 using DocumentStore.Application.Dtos;
 using DocumentStore.Application.Query;
-using DocumentStore.WebApi.Middleware;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -59,7 +58,7 @@ namespace DocumentStore.WebApi.Controllers
         /// <param name="document">Pdf Document file data</param>
         /// <returns></returns>
         [HttpPost]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Created)]
         public async Task<ActionResult> AddDocument([Required]IFormFile document)
         {
             if (!ModelState.IsValid)
