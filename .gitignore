@@ -1,0 +1,16 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/DocumentStore.Infrustructure/bin/Debug/netstandard2.0
+/DocumentStore.Infrustructure/obj
+/DocumentStore.WebApi.UnitTests/bin/Debug/netcoreapp3.1
+/DocumentStore.WebApi.UnitTests/obj
+/PdfStore.Server/bin/Debug/netstandard2.0
+/.vs
+/PdfStore.Server/obj
+/PdfStore.Server.UnitTests/bin/Debug/netcoreapp3.1
+/PdfStore.Server.UnitTests/obj
+/PdfStoreWebApi/bin/Debug/netcoreapp3.1
+/PdfStoreWebApi/obj
+*.user
