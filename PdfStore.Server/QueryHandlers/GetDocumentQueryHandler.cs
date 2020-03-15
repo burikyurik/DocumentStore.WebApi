@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using DocumentStore.Application.Dtos;
 using DocumentStore.Application.Query;
@@ -20,6 +21,9 @@ namespace DocumentStore.Application.QueryHandlers
 
         public async Task<DocumentDto> Handle(DownloadDocumentQuery request, CancellationToken cancellationToken)
         {
+            if(request==null)
+                throw new ArgumentNullException(nameof(request));
+
             var documentInfo = await domainRepository.GetDocumentByLocation(request.Location);
             if (documentInfo == null)
                 throw new ValidationException($"Document with Location: {request.Location} doesn't exist.");

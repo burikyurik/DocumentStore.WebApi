@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using DocumentStore.Application.Command;
 using DocumentStore.Application.Validation;
@@ -18,6 +19,9 @@ namespace DocumentStore.Application.CommandHandlers
         }
         public async Task<Unit> Handle(DeleteDocumentCommand request, CancellationToken cancellationToken)
         {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
             var document = await domainRepository.GetDocumentByLocation(request.FileLocation);
             if(document==null)
                 throw new ValidationException($"Document with Location: {request.FileLocation} doesn't exist.");

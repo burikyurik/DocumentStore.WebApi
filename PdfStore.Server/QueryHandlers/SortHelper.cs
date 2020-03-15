@@ -9,6 +9,8 @@ namespace DocumentStore.Application.QueryHandlers
     {
         public string CreateSortQuery(string orderByQueryString)
         {
+            if (string.IsNullOrEmpty(orderByQueryString))
+                return string.Empty;
             var orderParams = orderByQueryString.Trim().Split(',');
             var propertyInfos = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
             var orderQueryBuilder = new StringBuilder();
@@ -24,7 +26,7 @@ namespace DocumentStore.Application.QueryHandlers
                 if (objectProperty == null)
                     continue;
 
-                var sortingOrder = param.EndsWith(" desc") ? "descending" : "ascending";
+                var sortingOrder = param.EndsWith(" desc",StringComparison.InvariantCulture) ? "descending" : "ascending";
 
                 orderQueryBuilder.Append($"{objectProperty.Name} {sortingOrder}, ");
             }

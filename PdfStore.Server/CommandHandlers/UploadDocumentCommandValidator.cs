@@ -4,6 +4,7 @@ using FluentValidation;
 
 namespace DocumentStore.Application.CommandHandlers
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix", Justification = "<Pending>")]
     public class UploadDocumentCommandValidator : AbstractValidator<UploadDocumentCommand>
     {
         //TODO inject from container

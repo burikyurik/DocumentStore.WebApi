@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,6 +23,9 @@ namespace DocumentStore.Application.QueryHandlers
 
         public async Task<List<DocumentInfoDto>> Handle(GetDocumentsQuery request, CancellationToken cancellationToken)
         {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
             var documents = await domainRepository.GetDocuments(sortHelper.CreateSortQuery(request.OrderBy));
 
             return documents.Select(x => new DocumentInfoDto(x.Name, x.FileSize, x.Location)).ToList();

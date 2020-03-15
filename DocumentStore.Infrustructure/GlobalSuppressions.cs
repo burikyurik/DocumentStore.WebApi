@@ -1,0 +1,12 @@
+﻿// This file is used by Code Analysis to maintain SuppressMessage
+// attributes that are applied to this project.
+// Project-level suppressions either have no target or are given
+// a specific target and scoped to a namespace, type, member, etc.
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2007:Consider calling ConfigureAwait on the awaited task", Justification = "<Pending>", Scope = "member", Target = "~M:DocumentStore.Infrastructure.AzureBlobStorageFileRepository.UploadFile(System.String,System.Byte[],System.String)~System.Threading.Tasks.Task{System.String}")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2007:Consider calling ConfigureAwait on the awaited task", Justification = "<Pending>", Scope = "member", Target = "~M:DocumentStore.Infrastructure.AzureBlobStorageFileRepository.GetFile(System.String)~System.Threading.Tasks.Task{System.Byte[]}")]
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2007:Consider calling ConfigureAwait on the awaited task", Justification = "<Pending>", Scope = "member", Target = "~M:DocumentStore.Infrastructure.AzureBlobStorageFileRepository.DeleteFile(System.String,System.Threading.CancellationToken)~System.Threading.Tasks.Task")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2007:Consider calling ConfigureAwait on the awaited task", Justification = "<Pending>", Scope = "member", Target = "~M:DocumentStore.Infrastructure.AzureBlobStorageFileRepository.GetCloudBlobContainer~System.Threading.Tasks.Task{Microsoft.Azure.Storage.Blob.CloudBlobContainer}")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2007:Consider calling ConfigureAwait on the awaited task", Justification = "<Pending>", Scope = "member", Target = "~M:DocumentStore.Infrastructure.CosmosDbDomainRepository.Add(DocumentStore.Infrastructure.Models.Document,System.Threading.CancellationToken)~System.Threading.Tasks.Task")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2007:Consider calling ConfigureAwait on the awaited task", Justification = "<Pending>", Scope = "member", Target = "~M:DocumentStore.Infrastructure.CosmosDbDomainRepository.Delete(DocumentStore.Infrastructure.Models.Document,System.Threading.CancellationToken)~System.Threading.Tasks.Task")]

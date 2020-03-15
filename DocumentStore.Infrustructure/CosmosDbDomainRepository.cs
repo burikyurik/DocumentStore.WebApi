@@ -13,7 +13,7 @@ namespace DocumentStore.Infrastructure
         public CosmosDbDomainRepository(DocumentContext context)
         {
             this.context = context;
-            context.Database.EnsureCreated();
+            context?.Database.EnsureCreated();
         }
         public async Task Add(Document document, CancellationToken cancellationToken)
         {

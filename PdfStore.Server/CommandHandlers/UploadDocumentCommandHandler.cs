@@ -21,6 +21,9 @@ namespace DocumentStore.Application.CommandHandlers
         }
         protected override async Task<Unit> ProcessHandle(UploadDocumentCommand request, CancellationToken cancellationToken)
         {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
             var fileLocation = await fileRepository.UploadFile(request.DocumentDto.Name, request.DocumentDto.FileData, request.DocumentDto.ContentType);
             await domainRepository.Add(new Document(Guid.NewGuid(), request.DocumentDto.Name, fileLocation, request.DocumentDto.Length, request.DocumentDto.ContentType), cancellationToken);
             return Unit.Value;

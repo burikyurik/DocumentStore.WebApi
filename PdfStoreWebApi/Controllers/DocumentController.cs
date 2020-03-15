@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
@@ -85,7 +86,7 @@ namespace DocumentStore.WebApi.Controllers
             return Ok();
         }
 
-        private async Task<byte[]> ReadFileContent(IFormFile document)
+        private static async Task<byte[]> ReadFileContent(IFormFile document)
         {
             using (var stream = new MemoryStream())
             {

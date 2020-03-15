@@ -19,6 +19,9 @@ namespace DocumentStore.Infrastructure
 
         public async Task<string> UploadFile(string fileName, byte[] fileData, string fileMimeType)
         {
+            if (fileData == null)
+                throw new ArgumentNullException(nameof(fileData));
+
             var container = await GetCloudBlobContainer();
 
             CloudBlockBlob cloudBlockBlob = container.GetBlockBlobReference(fileName);
