@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace DocumentStore.WebApi
 {
@@ -39,11 +40,8 @@ namespace DocumentStore.WebApi
             services.AddScoped<ISortHelper<Document>, SortHelper<Document>>();
             services.AddMediatR(typeof(GetDocumentsQuery));
             services.AddScoped<IValidator<UploadDocumentCommand>, UploadDocumentCommandValidator>();
-            services.AddSingleton<ICircuitBreaker>(provider => new CircuitBreaker.Net.CircuitBreaker(
-                TaskScheduler.Default,
-                maxFailures: 3,
-                invocationTimeout: TimeSpan.FromSeconds(30),
-                circuitResetTimeout: TimeSpan.FromSeconds(60)));
+            
+            services.AddPolly();
 
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(RequestHandlerBehaviorWithCircuitBreaker<,>));
 
