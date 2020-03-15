@@ -17,6 +17,7 @@ namespace DocumentStore.Application.UnitTests
 
         private Mock<IFileRepository> fileRepository;
         private Mock<IDomainRepository> domainRepository;
+
         [SetUp]
         public void Setup()
         {
@@ -26,7 +27,7 @@ namespace DocumentStore.Application.UnitTests
         }
 
         [Test]
-        public void ShouldThrowValidationExceptionWhenFileDoesntExist()
+        public void ShouldThrowValidationExceptionWhenFileDoesNtoExist()
         {
             string location = "testLocation";
             domainRepository.Setup(repository => repository.GetDocumentByLocation(location)).ReturnsAsync(() => null);

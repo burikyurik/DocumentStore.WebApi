@@ -31,13 +31,13 @@ namespace DocumentStore.Application.UnitTests
         [TestCase(1, false)]
         [TestCase(-1, true)]
         [TestCase(0, true)]
-        public void ShouldValidateFileSizeMoreThen5Mb(long fileSizeDifference, bool isValid)
+        public void ShouldValidateFileSizeMoreThen5Mb(long fileSizeDifference, bool expectedIsValid)
         {
             const long maxFileSize = 5242880;//5Mb
             var document = new DocumentDto("test.pdf", "testContentType", maxFileSize + fileSizeDifference, new byte[maxFileSize + fileSizeDifference]);
             var validation = validator.Validate(new UploadDocumentCommand(document));
-            Assert.That(validation.IsValid,Is.EqualTo(isValid));
-            if(!isValid)
+            Assert.That(validation.IsValid,Is.EqualTo(expectedIsValid));
+            if(!expectedIsValid)
                 Assert.That(validation.Errors.First().ErrorMessage, Is.EqualTo($"File too large, limit is {maxFileSize} Byte"));
         }
 
@@ -45,12 +45,12 @@ namespace DocumentStore.Application.UnitTests
         [TestCase(".doc",false)]
         [TestCase(".png",false)]
         [TestCase(".pdf", true)]
-        public void ShouldValidateFileType(string fileExtension, bool isValid)
+        public void ShouldValidateFileType(string fileExtension, bool expectedIsValid)
         {
             var document = new DocumentDto($"test{fileExtension}", "testContentType", 100, new byte[100]);
             var validation = validator.Validate(new UploadDocumentCommand(document));
-            Assert.That(validation.IsValid,Is.EqualTo(isValid));
-            if(!isValid)
+            Assert.That(validation.IsValid,Is.EqualTo(expectedIsValid));
+            if(!expectedIsValid)
                 Assert.That(validation.Errors.First().ErrorMessage, Is.EqualTo($"Not Allowed File Extension. Allowed Extension .pdf"));
         }
 

@@ -25,7 +25,7 @@ namespace DocumentStore.Application.UnitTests
         }
 
         [Test]
-        public void ShouldThrowValidationExceptionWhenFileDoesntExist()
+        public void ShouldThrowValidationExceptionWhenFileDoesNotExist()
         {
             string location = "testLocation";
             domainRepository.Setup(repository => repository.GetDocumentByLocation(location)).ReturnsAsync(() => null);

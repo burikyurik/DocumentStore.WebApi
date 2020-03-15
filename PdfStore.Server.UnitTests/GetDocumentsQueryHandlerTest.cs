@@ -28,7 +28,7 @@ namespace DocumentStore.Application.UnitTests
         {
             var documents = new[]
             {
-                new Document(Guid.NewGuid(), "tes", "testLocation", 1024, string.Empty)
+                new Document(Guid.NewGuid(), "test", "testLocation", 1024, string.Empty)
             };
             domainRepository.Setup(repository => repository.GetDocuments(It.IsAny<string>())).ReturnsAsync(documents);
             var dtos = await handler.Handle(new GetDocumentsQuery("Name"), CancellationToken.None);
