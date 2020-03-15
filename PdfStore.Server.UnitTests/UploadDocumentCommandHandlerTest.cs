@@ -17,13 +17,15 @@ namespace DocumentStore.Application.UnitTests
         private UploadDocumentCommandValidator validator;
         private Mock<IFileRepository> fileRepository;
         private Mock<IDomainRepository> domainRepository;
+
         [SetUp]
         public void Setup()
         {
             fileRepository = new Mock<IFileRepository>();
             domainRepository = new Mock<IDomainRepository>();
-            handler = new UploadDocumentCommandHandler(fileRepository.Object, domainRepository.Object);
-            validator=new UploadDocumentCommandValidator();
+            validator = new UploadDocumentCommandValidator();
+            handler = new UploadDocumentCommandHandler(fileRepository.Object, domainRepository.Object, validator);
+            
         }
 
         [TestCase(1, false)]

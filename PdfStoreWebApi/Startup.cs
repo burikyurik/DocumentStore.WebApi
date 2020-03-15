@@ -1,3 +1,7 @@
+using System;
+using System.Threading.Tasks;
+using CircuitBreaker.Net;
+using DocumentStore.Application;
 using DocumentStore.Application.Command;
 using DocumentStore.Application.CommandHandlers;
 using DocumentStore.Application.Query;
@@ -35,7 +39,13 @@ namespace DocumentStore.WebApi
             services.AddScoped<ISortHelper<Document>, SortHelper<Document>>();
             services.AddMediatR(typeof(GetDocumentsQuery));
             services.AddScoped<IValidator<UploadDocumentCommand>, UploadDocumentCommandValidator>();
-            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(CommandValidationBehavior<,>));
+            services.AddSingleton<ICircuitBreaker>(provider => new CircuitBreaker.Net.CircuitBreaker(
+                TaskScheduler.Default,
+                maxFailures: 3,
+                invocationTimeout: TimeSpan.FromSeconds(30),
+                circuitResetTimeout: TimeSpan.FromSeconds(60)));
+
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(RequestHandlerBehaviorWithCircuitBreaker<,>));
 
             var azureStorageConnectionString = Configuration["AzureStorageConnectionString"];
             services.AddAzureStorage(azureStorageConnectionString);

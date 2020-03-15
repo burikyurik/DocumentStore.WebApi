@@ -43,7 +43,7 @@ namespace DocumentStore.Application.UnitTests
         [TestCase("FileSize desc", "FileSize descending")]
         [TestCase("WrongPropertyName", "")]
         [TestCase("", "")]
-        public async Task ShouldCreateCreateSortQuery(string queryParameter, string expectedSortQuery)
+        public void ShouldCreateCreateSortQuery(string queryParameter, string expectedSortQuery)
         {
             var sortQuery = sortHelper.CreateSortQuery(queryParameter);
             Assert.That(sortQuery, Is.EqualTo(expectedSortQuery));
